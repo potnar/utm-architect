@@ -1,7 +1,6 @@
 import { useState, useEffect } from 'react'
 import { toast } from "sonner"
 
-// Definicja typu dla naszych parametrów
 export type UtmParams = {
   baseUrl: string
   source: string
@@ -11,7 +10,6 @@ export type UtmParams = {
   content: string
 }
 
-// Definicja szablonu (Preset)
 export type Preset = {
   id: string
   name: string
@@ -38,7 +36,7 @@ export function useUtmBuilder() {
     }
   }, [])
 
-  // 2. Generowanie URL (tak jak wcześniej)
+  // 2. Generowanie URL na żywo
   useEffect(() => {
     if (!params.baseUrl) {
       setResultUrl('')
@@ -53,7 +51,10 @@ export function useUtmBuilder() {
       if (params.source) url.searchParams.set('utm_source', params.source)
       if (params.medium) url.searchParams.set('utm_medium', params.medium)
       if (params.campaign) url.searchParams.set('utm_campaign', params.campaign)
+      if (params.term) url.searchParams.set('utm_term', params.term)
+      if (params.content) url.searchParams.set('utm_content', params.content)
       
+      // Zamiana spacji na plusy
       setResultUrl(url.toString().replace(/%20/g, '+'))
     } catch (e) {
       setResultUrl('')
@@ -73,9 +74,9 @@ export function useUtmBuilder() {
 
   const savePreset = (name: string) => {
     const newPreset: Preset = {
-      id: Date.now().toString(), // Proste ID na bazie czasu
+      id: Date.now().toString(),
       name,
-      params: { ...params } // Kopia aktualnych parametrów
+      params: { ...params }
     }
     
     const updatedPresets = [...presets, newPreset]

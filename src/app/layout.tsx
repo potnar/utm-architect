@@ -1,13 +1,11 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
-// 👇 Importy komponentów
 import { Toaster } from "@/_components/ui/sonner";
 import { Footer } from "@/_components/Footer";
 
 const inter = Inter({ subsets: ["latin"] });
 
-// 👇 SEO - To czytają boty Google
 export const metadata: Metadata = {
   title: "UTM Architect | Darmowy Kreator Linków UTM & Presety",
   description:
@@ -39,13 +37,8 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
-        {/* Główna treść rozciąga się, żeby wypchnąć footer na dół */}
         <div className="flex-1">{children}</div>
-
-        {/* Footer na samym dole */}
         <Footer />
-
-        {/* Powiadomienia (Toast) */}
         <Toaster position="top-center" richColors />
       </body>
     </html>
