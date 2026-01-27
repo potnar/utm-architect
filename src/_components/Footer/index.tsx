@@ -49,7 +49,7 @@ export function Footer() {
                   rel="noopener noreferrer"
                   className="hover:text-blue-400 flex items-center gap-2 transition-colors"
                 >
-                  <Linkedin className="w-4 h-4" /> Mój LinkedIn
+                  <Linkedin className="w-4 h-4" /> LinkedIn
                 </a>
               </li>
             </ul>
@@ -75,10 +75,6 @@ export function Footer() {
 
         <div className="border-t border-slate-800 pt-8 flex flex-col md:flex-row justify-between items-center gap-4 text-xs">
           <p>© 2024 UTM Architect. Open Source.</p>
-          <div className="flex items-center gap-2">
-            <Globe className="w-3 h-3" />
-            <span>Made with Next.js in Warsaw 🇵🇱</span>
-          </div>
         </div>
       </div>
     </footer>

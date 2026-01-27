@@ -14,7 +14,6 @@ import {
   Coffee,
 } from "lucide-react";
 
-// 👇 POPRAWIONE IMPORTY (z folderu _components)
 import {
   Card,
   CardContent,
@@ -169,6 +168,42 @@ export default function Home() {
                     onChange={(e) => updateField("campaign", e.target.value)}
                   />
                 </div>
+
+                {/* --- NOWA SEKCJA (TERM I CONTENT) --- */}
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6 pt-2">
+                  {/* TERM */}
+                  <div className="space-y-2">
+                    <Label htmlFor="term" className="text-slate-600">
+                      Słowo kluczowe (utm_term){" "}
+                      <span className="text-xs font-normal text-slate-400">
+                        (Opcjonalne)
+                      </span>
+                    </Label>
+                    <Input
+                      id="term"
+                      placeholder="np. buty-biegowe"
+                      value={params.term || ""}
+                      onChange={(e) => updateField("term", e.target.value)}
+                    />
+                  </div>
+
+                  {/* CONTENT */}
+                  <div className="space-y-2">
+                    <Label htmlFor="content" className="text-slate-600">
+                      Treść reklamy (utm_content){" "}
+                      <span className="text-xs font-normal text-slate-400">
+                        (Opcjonalne)
+                      </span>
+                    </Label>
+                    <Input
+                      id="content"
+                      placeholder="np. link-w-logo, wariant-A"
+                      value={params.content || ""}
+                      onChange={(e) => updateField("content", e.target.value)}
+                    />
+                  </div>
+                </div>
+                {/* --- KONIEC NOWEJ SEKCJI --- */}
 
                 <div className="pt-4 flex gap-4">
                   <Button

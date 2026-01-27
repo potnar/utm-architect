@@ -44,17 +44,19 @@ export function useUtmBuilder() {
     }
     try {
       let validBase = params.baseUrl
+      // UX: Dodaj https:// jeśli user zapomniał
       if (!validBase.startsWith('http')) {
         validBase = 'https://' + validBase
       }
       const url = new URL(validBase)
+      
       if (params.source) url.searchParams.set('utm_source', params.source)
       if (params.medium) url.searchParams.set('utm_medium', params.medium)
       if (params.campaign) url.searchParams.set('utm_campaign', params.campaign)
       if (params.term) url.searchParams.set('utm_term', params.term)
       if (params.content) url.searchParams.set('utm_content', params.content)
       
-      // Zamiana spacji na plusy
+      // Zamiana spacji na plusy (standard UTM)
       setResultUrl(url.toString().replace(/%20/g, '+'))
     } catch (e) {
       setResultUrl('')
@@ -86,7 +88,12 @@ export function useUtmBuilder() {
   }
 
   const loadPreset = (preset: Preset) => {
-    setParams(preset.params)
+    setParams({
+      ...preset.params,
+      // Zabezpieczenie dla starych szablonów (żeby React nie krzyczał o uncontrolled input)
+      term: preset.params.term || '', 
+      content: preset.params.content || ''
+    })
     toast.info(`Wczytano szablon: ${preset.name}`)
   }
 
