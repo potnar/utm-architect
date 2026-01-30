@@ -1,36 +1,76 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# UTM Architect 🏗️
 
-## Getting Started
+![Project Status](https://img.shields.io/badge/Status-Active-success)
+![License](https://img.shields.io/badge/License-MIT-blue)
+![Tech](https://img.shields.io/badge/Built%20With-Next.js%2014-black)
 
-First, run the development server:
+**A privacy-first, local UTM link builder for professional marketers.**
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+UTM Architect is a modern web application designed to replace messy Excel spreadsheets. It allows marketers to generate, manage, and save tracking links entirely within their browser. No data is ever sent to a server.
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+![UTM Architect Screenshot](/screenshot.png)
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 🚀 Key Features
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+* **100% Privacy Focused:** All processing happens locally in your browser. No data leaves your device.
+* **Complete UTM Support:** Supports standard parameters (`source`, `medium`, `campaign`) and advanced options (`term`, `content`) added in v1.1.
+* **Smart Templates:** Save your most used configurations as "Presets" (stored in `localStorage`).
+* **Instant Copy:** One-click copy to clipboard with auto-validation.
+* **Developer Experience:** Built with modern web standards, fully typed.
 
-## Learn More
+## 🛠️ Tech Stack
 
-To learn more about Next.js, take a look at the following resources:
+This project was built to showcase the power of Next.js 14 App Router combined with client-side logic.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+| Category | Technology |
+|----------|------------|
+| **Framework** | [Next.js 14](https://nextjs.org/) (App Router) |
+| **Language** | [TypeScript](https://www.typescriptlang.org/) |
+| **Styling** | [Tailwind CSS](https://tailwindcss.com/) |
+| **UI Components** | [Shadcn/ui](https://ui.shadcn.com/) |
+| **Icons** | [Lucide React](https://lucide.dev/) |
+| **State Management** | React Hooks + LocalStorage |
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
+## 📦 Getting Started
 
-## Deploy on Vercel
+To run this project locally:
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+1.  **Clone the repository:**
+    ```bash
+    git clone [https://github.com/your-username/utm-architect.git](https://github.com/your-username/utm-architect.git)
+    ```
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+2.  **Install dependencies:**
+    ```bash
+    cd utm-architect
+    npm install
+    # or
+    yarn install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  Open [http://localhost:3000](http://localhost:3000) with your browser.
+
+## 🤝 Contributing
+
+Contributions, issues, and feature requests are welcome!
+Feel free to check the [issues page](https://github.com/your-username/utm-architect/issues).
+
+## ❤️ Support the Creator
+
+I built this tool as Open Source software because I believe in free, privacy-friendly tools for everyone.
+
+**I am currently training for the Warsaw Half Marathon to support cancer patients.**
+If this tool saved you time or helped you in your work, please consider donating to my Charity Run ("Biegam Dobrze").
+
+👉 **[Donate to my Charity Run Here](https://rejestracja.maratonwarszawski.com/pl/fundraising/78340dd5-a8e8-4540-8852-2222942ed145)**
+
+Even a small donation ($5 / 20 PLN) helps me reach the start line and support the fight against cancer!
+
+---
+
+*Built with ❤️ in Warsaw.*
