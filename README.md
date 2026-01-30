@@ -8,7 +8,7 @@
 
 UTM Architect is a modern web application designed to replace messy Excel spreadsheets. It allows marketers to generate, manage, and save tracking links entirely within their browser. No data is ever sent to a server.
 
-![UTM Architect Screenshot](/screenshot.png)
+![UTM Architect Screenshot](public/screenshot.png)
 
 ## 🚀 Key Features
 
