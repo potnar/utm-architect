@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import { Toaster } from "@/_components/ui/sonner";
 import { Footer } from "@/_components/Footer";
+import { PostHogProvider } from "./providers";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -37,9 +38,11 @@ export default function RootLayout({
   return (
     <html lang="pl">
       <body className={`${inter.className} min-h-screen flex flex-col`}>
-        <div className="flex-1">{children}</div>
-        <Footer />
-        <Toaster position="top-center" richColors />
+        <PostHogProvider>
+          <div className="flex-1">{children}</div>
+          <Footer />
+          <Toaster position="top-center" richColors />
+        </PostHogProvider>
       </body>
     </html>
   );
