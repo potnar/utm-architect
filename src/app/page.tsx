@@ -182,7 +182,7 @@ export default function Home() {
                     <Input
                       id="term"
                       placeholder="np. buty-biegowe"
-                      value={params.term || ""}
+                      value={params.term}
                       onChange={(e) => updateField("term", e.target.value)}
                     />
                   </div>
@@ -198,7 +198,7 @@ export default function Home() {
                     <Input
                       id="content"
                       placeholder="np. link-w-logo, wariant-A"
-                      value={params.content || ""}
+                      value={params.content}
                       onChange={(e) => updateField("content", e.target.value)}
                     />
                   </div>

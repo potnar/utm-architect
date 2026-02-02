@@ -16,6 +16,21 @@ export type Preset = {
   params: UtmParams
 }
 
+const normalizeUtmData = (data: any): UtmParams => {
+  if (!data) {
+    return { baseUrl: '', source: '', medium: '', campaign: '', term: '', content: '' }
+  }
+
+  return {
+    baseUrl: data.baseUrl || data.url || '',
+    source: data.source || data.utm_source || data.utmSource || '',
+    medium: data.medium || data.utm_medium || data.utmMedium || '',
+    campaign: data.campaign || data.utm_campaign || data.campaignName || '',
+    term: data.term || data.utm_term || '',
+    content: data.content || data.utm_content || '',
+  }
+}
+
 export function useUtmBuilder() {
   const [params, setParams] = useState<UtmParams>({
     baseUrl: '', source: '', medium: '', campaign: '', term: '', content: ''
@@ -24,28 +39,33 @@ export function useUtmBuilder() {
   const [presets, setPresets] = useState<Preset[]>([])
   const [resultUrl, setResultUrl] = useState('')
 
-  // 1. Ładowanie szablonów z LocalStorage przy starcie
   useEffect(() => {
     const saved = localStorage.getItem('utm_presets')
     if (saved) {
       try {
-        setPresets(JSON.parse(saved))
+        const parsed = JSON.parse(saved)
+        const normalizedPresets = Array.isArray(parsed) 
+          ? parsed.map((p: any) => ({
+              ...p,
+              params: normalizeUtmData(p.params)
+            }))
+          : []
+          
+        setPresets(normalizedPresets)
       } catch (e) {
         console.error("Błąd odczytu localStorage", e)
       }
     }
   }, [])
 
-  // 2. Generowanie URL na żywo
   useEffect(() => {
     if (!params.baseUrl) {
       setResultUrl('')
       return
     }
     try {
-      let validBase = params.baseUrl
-      // UX: Dodaj https:// jeśli user zapomniał
-      if (!validBase.startsWith('http')) {
+      let validBase = params.baseUrl.trim()
+      if (!validBase.match(/^https?:\/\//)) {
         validBase = 'https://' + validBase
       }
       const url = new URL(validBase)
@@ -56,14 +76,12 @@ export function useUtmBuilder() {
       if (params.term) url.searchParams.set('utm_term', params.term)
       if (params.content) url.searchParams.set('utm_content', params.content)
       
-      // Zamiana spacji na plusy (standard UTM)
       setResultUrl(url.toString().replace(/%20/g, '+'))
     } catch (e) {
       setResultUrl('')
     }
   }, [params])
 
-  // Funkcje pomocnicze
   const updateField = (field: keyof UtmParams, value: string) => {
     setParams(prev => ({ ...prev, [field]: value }))
   }
@@ -71,8 +89,6 @@ export function useUtmBuilder() {
   const reset = () => {
     setParams({ baseUrl: '', source: '', medium: '', campaign: '', term: '', content: '' })
   }
-
-  // --- LOGIKA PRESETÓW ---
 
   const savePreset = (name: string) => {
     const newPreset: Preset = {
@@ -88,12 +104,8 @@ export function useUtmBuilder() {
   }
 
   const loadPreset = (preset: Preset) => {
-    setParams({
-      ...preset.params,
-      // Zabezpieczenie dla starych szablonów (żeby React nie krzyczał o uncontrolled input)
-      term: preset.params.term || '', 
-      content: preset.params.content || ''
-    })
+    const cleanParams = normalizeUtmData(preset.params)
+    setParams(cleanParams)
     toast.info(`Wczytano szablon: ${preset.name}`)
   }
 
